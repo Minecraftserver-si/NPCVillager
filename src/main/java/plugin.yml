@@ -1,5 +1,4 @@
 author: Kekec852
-database: false
 description: NPCLib using minecraft NPCs
 main: si.minecraftserver.bukkit.npcvillager.test
 name: NPCTestLIB
