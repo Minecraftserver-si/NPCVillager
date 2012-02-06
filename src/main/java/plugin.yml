@@ -1,11 +1,9 @@
 author: Kekec852
 database: false
 description: NPCLib using minecraft NPCs
-generator: http://dinnerbone.com/minecraft/tools/pluginator/
-main: si.minecraftserver.bukkit.npctestlib.NPCTestLIB
+main: si.minecraftserver.bukkit.npcvillager.test
 name: NPCTestLIB
 startup: postworld
-url: http://plugins.minecraftserver.si/
 version: '1.0'
 commands:
   npc:
