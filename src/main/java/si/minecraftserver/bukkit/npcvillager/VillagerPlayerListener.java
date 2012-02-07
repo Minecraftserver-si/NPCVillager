@@ -11,15 +11,16 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerListener;
 
 /**
  *
  * @author Martin
  */
-public class VillagerPlayerListener extends PlayerListener {
+public class VillagerPlayerListener implements Listener{
 
     private VillagerManagerImpl manager;
 
@@ -27,7 +28,7 @@ public class VillagerPlayerListener extends PlayerListener {
         this.manager = manager;
     }
 
-    @Override
+    @EventHandler
     public void onPlayerChat(PlayerChatEvent event) {
         Player p = event.getPlayer();
         Location l = p.getLocation();
@@ -47,7 +48,7 @@ public class VillagerPlayerListener extends PlayerListener {
         }
     }
 
-    @Override
+    @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         CraftEntity e = (CraftEntity) event.getRightClicked();
         Player p = event.getPlayer();

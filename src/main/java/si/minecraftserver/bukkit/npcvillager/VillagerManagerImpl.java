@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.tools.JavaFileManager;
 import net.minecraft.server.EntityTypes;
 import net.minecraft.server.WorldServer;
 import org.bukkit.Chunk;
@@ -18,8 +17,6 @@ import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event.Priority;
-import org.bukkit.event.Event.Type;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,11 +40,13 @@ public class VillagerManagerImpl implements VillagerManager{
         this.server = plugin.getServer();
         entityListener = new VillagerEntityListener(this);
         playerListener = new VillagerPlayerListener(this);
-        server.getPluginManager().registerEvent(Type.ENTITY_COMBUST, entityListener, Priority.Low, plugin);
+        /*server.getPluginManager().registerEvent(Type.ENTITY_COMBUST, entityListener, Priority.Low, plugin);
         server.getPluginManager().registerEvent(Type.ENTITY_DAMAGE, entityListener, Priority.Low, plugin);
         server.getPluginManager().registerEvent(Type.ENTITY_TARGET, entityListener, Priority.Low, plugin);
         server.getPluginManager().registerEvent(Type.PLAYER_INTERACT_ENTITY, playerListener, Priority.Low, plugin);
-        server.getPluginManager().registerEvent(Type.PLAYER_CHAT, playerListener, Priority.Low, plugin);
+        server.getPluginManager().registerEvent(Type.PLAYER_CHAT, playerListener, Priority.Low, plugin);*/
+        server.getPluginManager().registerEvents(playerListener, plugin);
+        server.getPluginManager().registerEvents(entityListener, plugin);
         try {
             Class c = EntityTypes.class;
             Field[] fs = c.getDeclaredFields();
@@ -56,13 +55,13 @@ public class VillagerManagerImpl implements VillagerManager{
                 System.out.println(f);
                 f.setAccessible(true);
                 Map map = (Map) f.get(null);
-                if (f.getName().equalsIgnoreCase("a")) {
+                if (f.getName().equalsIgnoreCase("b")) {
                     map.put("Villager", Villager.class);
-                } else if (f.getName().equalsIgnoreCase("b")) {
-                    map.put(Villager.class, "Villager");
                 } else if (f.getName().equalsIgnoreCase("c")) {
-                    map.put(Integer.valueOf(120), Villager.class);
+                    map.put(Villager.class, "Villager");
                 } else if (f.getName().equalsIgnoreCase("d")) {
+                    map.put(Integer.valueOf(120), Villager.class);
+                } else if (f.getName().equalsIgnoreCase("e")) {
                     map.put(Villager.class, Integer.valueOf(120));
                 }
             }

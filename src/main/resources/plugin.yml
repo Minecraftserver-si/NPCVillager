@@ -1,6 +1,6 @@
 author: Kekec852
 description: NPCLib using minecraft NPCs
-main: si.minecraftserver.bukkit.npcvillager.test
+main: si.minecraftserver.bukkit.npcvillager.test.NPCTestLIB
 name: NPCTestLIB
 startup: postworld
 version: '1.0'
